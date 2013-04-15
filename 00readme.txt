@@ -19,9 +19,10 @@ doc/ - documents related to this project
 
 doc/zzOriginals/ - original versions of documents
 
-spice/ - link to PySPICE/spice/
+spice/ - symlink to PySPICE/spice/
        - allows 'import spice' in Python code
        - not part of repo
+       - see https://github.com/drbitboy/PySPICE
 
 ../kernels/ - SCLK and LEAPSECOND kernels
             - not part of repo
