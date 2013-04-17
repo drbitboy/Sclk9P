@@ -133,17 +133,49 @@ def readtemps( fArg ):
   return tts[iw,:]
 
 
+class DiScuTemps:
+  def __init__(self,tts,which=False):
+    if which:
+      self.tts = tts[ numpy.where(tts[:,2]==which)[0], : ]
+    else:
+      self.tts = tts
+
+    self.bintemps()
+
+  def empty(self):
+    return self.tts.shape[0]==0
+  ######################################################################
+  ### group data into bins of size 64-128 elements
+  def bintemps(self):
+    self.breaks = numpy.where( (self.tts[1:,0] - self.tts[:-1,0])>1000 )[0] + 1
+    self.ttsBinned = None
+    pass
+
+########################################################################
 if __name__=='__main__':
 
   spice.furnsh( __file__ )
   tts = readtemps( sys.stdin if len(sys.argv)<2 else sys.argv[1] )
+  dii = DiScuTemps( tts, which=-70 )
+  dif = DiScuTemps( tts, which=-140 )
 
   print( tts )          ### numpy default print will limit to less than a dozen lines
 
-  print( tts.shape )    ### Should be (N,3)
+  print( ( tts.shape, dii.tts.shape, dif.tts.shape, )  )    ### Should be (N,3)
 
-  print( (tts[:,1].min(),tts[:,1].max(),) )
+  if not dii.empty():
+    print( (dii.tts[:,1].min(),dii.tts[:,1].max(),) )
+    print( (dii.breaks[1:]-dii.breaks[:-1],) )
+  if not dif.empty():
+    print( (dif.tts[:,1].min(),dif.tts[:,1].max(),) )
+    print( (dif.breaks[1:]-dif.breaks[:-1],) )
+
   import matplotlib.pyplot as plt
-  plt.plot( tts[:,0],tts[:,1], '.' )
+  if not dii.empty(): plt.plot( dii.tts[:,0],dii.tts[:,1], '.', label='DII' )
+  if not dif.empty(): plt.plot( dif.tts[:,0],dif.tts[:,1], '.', label='DIF' )
+  if not ( dii.empty() or dif.empty() ):
+    plt.legend(loc='center left')
+  else:
+    plt.legend(loc='lower left')
   plt.show()
 
