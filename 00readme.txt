@@ -15,6 +15,8 @@ Manifest
 
 check_00.py - Initial test comparing DII and DIF SCLKs at TOI
 
+readtemps.py - Read DIF and DII clock temperatures
+
 doc/ - documents related to this project
 
 doc/zzOriginals/ - original versions of documents
