@@ -4,7 +4,7 @@
 KERNELS_TO_LOAD = (
 '../kernels/naif0010.tls'
 '../kernels/dif_sclkscet_00015_science.tsc'
-'../kernels/dii_sclkscet_00008_science.tsc'
+'../kernels/dii_sclkscet_00008_science_btc.tsc'
 )
 ETTOIPSEUDO = @2005-07-04T05:44:34.2
 \begintext

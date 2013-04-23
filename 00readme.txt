@@ -40,3 +40,9 @@ TOI - Time Of Impact
 SPICE - Toolkit (code) and kernel files (data) for describing ancillary
         info about spacecraft observations; see http://naif.jpl.nasa.gov/
 
+
+Git cheat sheet
+===============
+
+git commit -a -m "..."
+git push -u origin master

@@ -38,7 +38,7 @@ SPICE meta-kernel:
 KERNELS_TO_LOAD = (
 '../kernels/naif0010.tls'
 '../kernels/dif_sclkscet_00015_science.tsc'
-'../kernels/dii_sclkscet_00008_science.tsc'
+'../kernels/dii_sclkscet_00008_science_btc.tsc'
 '../kernels/dii_preenc174_nav_v1.bsp'
 '../kernels/dif_preenc174_nav_v1.bsp'
 )
