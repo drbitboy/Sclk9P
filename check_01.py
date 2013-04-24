@@ -8,6 +8,9 @@ KERNELS_TO_LOAD = (
 )
 ETSTART = @2005-06-19T05:45:38.384
 \begintext
+
+ETSTART is TOI(tparse('2005-07-04T05:44:34.2')) + 64.184s - 15d
+
 """
 
 import spice
