@@ -173,6 +173,8 @@ if __name__=='__main__':
   import matplotlib.pyplot as plt
   if not dii.empty(): plt.plot( dii.tts[:,0],dii.tts[:,1], '.', label='DII' )
   if not dif.empty(): plt.plot( dif.tts[:,0],dif.tts[:,1], '.', label='DIF' )
+  plt.xlabel( 'Time, VTC' )
+  plt.ylabel( 'Temperature, degC' )
   if not ( dii.empty() or dif.empty() ):
     plt.legend(loc='center left')
   else:
