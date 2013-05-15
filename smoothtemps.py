@@ -1,7 +1,7 @@
 """
 Usage:
 
-  python in.py all_scutemp.txt [#samples/smoothingFactor, default=150]
+  python in.py --date=all_scutemp.txt [--sf=#samples/smoothingFactor, default=150]
 """
 import sys
 import numpy
@@ -12,42 +12,65 @@ import readtemps
 import spice
 
 ########################################################################
-def ditemps():
+class AllDiTemps:
 
-  rf = readtemps.__file__
-  if rf[-4:-1]=='.py': rf = rf[:-1]
-  spice.furnsh( rf )   ### metakernel
+  def __init__(self):
 
-  print( rf )
+    rf = readtemps.__file__
+    if rf[-4:-1]=='.py': rf = rf[:-1]
+    spice.furnsh( rf )   ### metakernel
 
-  tts = readtemps.readtemps( sys.stdin if not sys.argv[1:] else sys.argv[1] )
+    self.tts = readtemps.readtemps( sys.stdin if not sys.argv[1:] else sys.argv[1] )
 
-  sf = 150. if not sys.argv[2:] else float(sys.argv[2])
+    self.dii = readtemps.DiScuTemps( self.tts, which=-70 )
+    self.dif = readtemps.DiScuTemps( self.tts, which=-140 )
 
-  dii = readtemps.DiScuTemps( tts, which=-70 )
-  dif = readtemps.DiScuTemps( tts, which=-140 )
+class SmoothDiTemps:
 
-  diitimes = dii.tts[:,0]
-  diitemps = dii.tts[:,1]
+  def __init__(self,ditemps=None):
 
-  diftimes = dif.tts[:,0]
-  diftemps = dif.tts[:,1]
+    ### .ditemps.dii and .ditemps.dif are DiScuTemps:
+    self.ditemps = ditemps or AllDiTemps()
 
-  fDii = interpolate.UnivariateSpline( diitimes, diitemps, s = diitimes.shape[0]/sf )
-  fDif = interpolate.UnivariateSpline( diftimes, diftemps, s = diftimes.shape[0]/sf )
+    self.sf = ([150.] + [i[5:] for i in sys.argv[1:] if i[:5]=='--sf='])[-1]
 
-  xnews = numpy.arange( numpy.min(diitimes), numpy.max(diitimes), 864 )
+    self.diicount = self.ditemps.dii.tts.shape[0]
+    self.difcount = self.ditemps.dif.tts.shape[0]
 
-  diiSmooth = fDii(xnews)
-  difSmooth = fDif(xnews)
+    ### Interpolation functions for DII and DIF temperatures = f(time)
+    self.fSmoothDii = interpolate.UnivariateSpline( self.diitimes(), self.diitemps(), s = self.diicount/self.sf )
+    self.fSmoothDif = interpolate.UnivariateSpline( self.diftimes(), self.diftemps(), s = self.difcount/self.sf )
+
+    self.time_limits = ( numpy.min(self.ditemps.dii.tts[:,0]), numpy.max(self.ditemps.dii.tts[:,0]) )
+
+  def diitimes(self): return self.ditemps.dii.tts[:,0].T
+  def diftimes(self): return self.ditemps.dif.tts[:,0].T
+
+  def diitemps(self): return self.ditemps.dii.tts[:,1].T
+  def diftemps(self): return self.ditemps.dif.tts[:,1].T
+
+  def diiSmoothTemps(self,times): return self.fSmoothDii(times)
+  def difSmoothTemps(self,times): return self.fSmoothDif(times)
+
+  def smoothedTTs(self,step):
+    times = numpy.arange( self.time_limits[0], self.time_limits[1] )
+    return times, self.diiSmoothTemps(times), self.difSmoothTemps(times)
+
+
+def ditempsPlot():
+
+  smoothditemps = SmoothDiTemps()
+
+  xnews, diiSmooth, difSmooth = smoothditemps.smoothedTTs(864.)
 
   smoothDiffs = 10 + diiSmooth - difSmooth
 
-  plt.plot( diitimes,diitemps, '.', label='DII' )
-  plt.plot(xnews,diiSmooth,label='DII smooth')
+  plt.plot( smoothditemps.diitimes(),smoothditemps.diitemps(), '.', label='DII' )
 
-  plt.plot( diftimes,diftemps, '.', label='DIF' )
-  plt.plot(xnews,difSmooth,label='DIF smooth')
+  plt.plot( smoothditemps.diftimes(), smoothditemps.diftemps(), '.', label='DIF' )
+
+  plt.plot( xnews,diiSmooth,label='DII smooth')
+  plt.plot( xnews,difSmooth,label='DIF smooth')
 
   plt.plot(xnews,smoothDiffs,label='Smooth diff + 10')
 
@@ -56,7 +79,7 @@ def ditemps():
 
 ########################################################################
 if __name__=="__main__":
-  ditemps()
+  ditempsPlot()
 
 ########################################################################
 ########################################################################
