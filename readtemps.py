@@ -28,6 +28,8 @@ Usage:
     import spice
     spice.furnsh( readtemps.__file__ )   ### metakernel
     tts = readtemps.readtemps('dii_scutemp.py')
+    dii = DiScuTemps( tts, which=-70 )
+    dif = DiScuTemps( tts, which=-140 )
 
 SPICE meta-kernel:
 - Need LSK, and DII+DIF SCLK and SPK
