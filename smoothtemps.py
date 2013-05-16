@@ -1,8 +1,10 @@
 """
 Usage:
 
-  python in.py --date=all_scutemp.txt [--sf=#samples/smoothingFactor, default=150]
+  python smoothtemps.py all_scutemp.txt [--sf=#samples/smoothingFactor, default=150]
+
 """
+import os
 import sys
 import numpy
 import xalglib as xa
@@ -13,24 +15,51 @@ import spice
 
 ########################################################################
 class AllDiTemps:
+  """
+  Class that reads a SCU time vs. temperatures file, per readtemps.py,
+  and splits the data into DII and DIF instances of class DiScuTemps
 
-  def __init__(self):
+  Read from argv[0] if it is the path of a regular file, else read from
+  STDIN
+
+  Usage:  ditemps = AllDiTemps(sys.argv[1:])
+
+  """
+
+  def __init__(self,argv=None):
 
     rf = readtemps.__file__
     if rf[-4:-1]=='.py': rf = rf[:-1]
     spice.furnsh( rf )   ### metakernel
 
-    self.tts = readtemps.readtemps( sys.stdin if not sys.argv[1:] else sys.argv[1] )
+    if argv and os.path.isfile(argv[0]):
+      fArg = argv[0]
+      fName = fArg
+    else:
+      fArg = sys.stdin
+      fName = 'STDIN'
 
-    self.dii = readtemps.DiScuTemps( self.tts, which=-70 )
-    self.dif = readtemps.DiScuTemps( self.tts, which=-140 )
+    print( "Reading DI temperature data from %s ..."%(fName,) )
 
+    tts = readtemps.readtemps( fArg )
+
+    self.dii = readtemps.DiScuTemps( tts, which=-70 )
+    self.dif = readtemps.DiScuTemps( tts, which=-140 )
+
+
+########################################################################
 class SmoothDiTemps:
+  """
+  Class that smooths DII and DIF data in instance of class AllDiTemps
+
+  Usage:  ditemps = AllDiTemps(sys.argv[1:])
+
+  """
 
   def __init__(self,ditemps=None):
 
     ### .ditemps.dii and .ditemps.dif are DiScuTemps:
-    self.ditemps = ditemps or AllDiTemps()
+    self.ditemps = ditemps or AllDiTemps(sys.argv[1:])
 
     self.sf = ([150.] + [i[5:] for i in sys.argv[1:] if i[:5]=='--sf='])[-1]
 
@@ -43,46 +72,58 @@ class SmoothDiTemps:
 
     self.time_limits = ( numpy.min(self.ditemps.dii.tts[:,0]), numpy.max(self.ditemps.dii.tts[:,0]) )
 
+  ### Return times for DII or DIF
   def diitimes(self): return self.ditemps.dii.tts[:,0].T
   def diftimes(self): return self.ditemps.dif.tts[:,0].T
 
+  ### Return temperatures for DII or DIF
   def diitemps(self): return self.ditemps.dii.tts[:,1].T
   def diftemps(self): return self.ditemps.dif.tts[:,1].T
 
-  def diiSmoothTemps(self,times): return self.fSmoothDii(times)
-  def difSmoothTemps(self,times): return self.fSmoothDif(times)
+  ### Return smoothed temperatures at times for DII or DIF
+  def diiSmoothTemps(self,smoothtimes): return self.fSmoothDii(smoothtimes)
+  def difSmoothTemps(self,smoothtimes): return self.fSmoothDif(smoothtimes)
 
+  ### Return smoothed temperatures at range of times for DII and DIF
   def smoothedTTs(self,step):
     times = numpy.arange( self.time_limits[0], self.time_limits[1] )
     return times, self.diiSmoothTemps(times), self.difSmoothTemps(times)
 
 
+########################################################################
 def ditempsPlot():
 
+  ### Use classes above to get data
   smoothditemps = SmoothDiTemps()
 
-  xnews, diiSmooth, difSmooth = smoothditemps.smoothedTTs(864.)
+  ### Get DII and DIF smoothed temperatures at .01d intervals
+  smoothTimes, diiSmooth, difSmooth = smoothditemps.smoothedTTs(864.)
 
-  smoothDiffs = 10 + diiSmooth - difSmooth
+  ### DII-DIF differences between smoothed data
+  smoothDiffs = diiSmooth - difSmooth
 
+  ### Plot DII and DIF raw data as points
   plt.plot( smoothditemps.diitimes(),smoothditemps.diitemps(), '.', label='DII' )
-
   plt.plot( smoothditemps.diftimes(), smoothditemps.diftemps(), '.', label='DIF' )
 
-  plt.plot( xnews,diiSmooth,label='DII smooth')
-  plt.plot( xnews,difSmooth,label='DIF smooth')
+  ### Plot smoothed DII and DIF data as lines
+  plt.plot( smoothTimes,diiSmooth,label='DII smooth')
+  plt.plot( smoothTimes,difSmooth,label='DIF smooth')
 
-  plt.plot(xnews,smoothDiffs,label='Smooth diff + 10')
+  ### Plot DII-DIF differences, offset +10C
+  plt.plot(smoothTimes,10+smoothDiffs,label='Smooth diff + 10')
 
   plt.legend(loc='center left')
   plt.show()
+
 
 ########################################################################
 if __name__=="__main__":
   ditempsPlot()
 
+
 ########################################################################
-########################################################################
+### Obsolete test code
 ########################################################################
 def example():
   xs = numpy.sort( numpy.hstack( (numpy.array([0.,100.]),numpy.random.random(48)*100,) ) )
