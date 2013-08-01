@@ -1,5 +1,13 @@
 #!/usr/bin/env python
 """
+Return DII clock - DIF clock values based on data
+from workbook:
+
+  TimeCorrelationCorrections.xls
+
+by Amy Walsh ca. Dec, 2005
+
+
 
 """
 rawdata = """
@@ -43,6 +51,8 @@ TOI:185	0A5ADFD6	DA000	0A5AE083	690	173727702.8929	2005-07-04T05:41:43	173727875
 #
 #BAD:181 => Possible bad point?
 #T0i:185 => TOI
+#
+# Those are tab-separated values
 """
 from collections import OrderedDict as OD
 

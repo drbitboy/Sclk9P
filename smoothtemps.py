@@ -61,7 +61,7 @@ class SmoothDiTemps:
     ### .ditemps.dii and .ditemps.dif are DiScuTemps:
     self.ditemps = ditemps or AllDiTemps(sys.argv[1:])
 
-    self.sf = ([150.] + [i[5:] for i in sys.argv[1:] if i[:5]=='--sf='])[-1]
+    self.sf = ([150.] + [float(i[5:]) for i in sys.argv[1:] if i[:5]=='--sf='])[-1]
 
     self.diicount = self.ditemps.dii.tts.shape[0]
     self.difcount = self.ditemps.dif.tts.shape[0]
@@ -85,8 +85,8 @@ class SmoothDiTemps:
   def difSmoothTemps(self,smoothtimes): return self.fSmoothDif(smoothtimes)
 
   ### Return smoothed temperatures at range of times for DII and DIF
-  def smoothedTTs(self,step):
-    times = numpy.arange( self.time_limits[0], self.time_limits[1] )
+  def smoothedTTs(self, step, lotime=False, hitime=False):
+    times = numpy.arange( lotime or self.time_limits[0], hitime or self.time_limits[1], step )
     return times, self.diiSmoothTemps(times), self.difSmoothTemps(times)
 
 

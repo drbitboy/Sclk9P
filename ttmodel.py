@@ -1,7 +1,11 @@
 """
 Usage:
 
-  python smoothtemps.py all_scutemp.txt [--sf=#samples/smoothingFactor, default=150]
+  python smoothtemps.py all_scutemp.txt \\
+    [--sf=#samples/smoothingFactor, default=150] \\
+    [--k=initial time slope as a multiple of net slope, default=-.01] \\
+    [--p1=dRate/dTemperature, ppm/degC, default=-.65] \\
+   
 
 """
 import os
@@ -35,7 +39,7 @@ def setupTimeDiffs():
   diDiffs,diBadDiffs, diTOIDiff = timediffs.parsedoclines()
 
   ### Build good and supect arrays of DII-DIF time differences
-  ### - append1.0 to prep goods for least-squares fit to remove slope
+  ### - append 1.0 to prep goods for least-squares fit to remove slope
   goods = numpy.array( [ [i.imFbDiff,i.imFracSec,1.0] for i in diDiffs ] )
   bads = numpy.array( [ [i.imFbDiff,i.imFracSec] for i in diBadDiffs ] )
 
@@ -60,6 +64,8 @@ def setupTimeDiffs():
   
   return diffsAbstimes, diffsNets, diffsGroup0, m, bads, diTOIDiff
 
+
+########################################################################
 def model2par( paramDeltaRateppm0, paramPpmPerDegC, deltaTime0, smoothTimes, deltaDegC):
   """
   Two-parameter model:
@@ -102,28 +108,34 @@ if __name__=="__main__":
 
   smoothTimes, diiSmooth, difSmooth, diffSmooth, smoothditemps = setupTemperatures(lotime=diffsGroup0[0])
 
-  k = -1e-2
-  p0,p1 = m * k * 1e6, -.20
+  ###k = -1e-2
+  ###p0,p1 = m * k * 1e6, -.20
 
-  title = '%f ppm (%em) at T=0; %f ppm/degC' % (p0,k,p1,)
+  k = ([-1e-2] + [float(i[4:]) for i in sys.argv[1:] if i[:4]=='--k='])[-1]
+  p0 = m * k * 1e6
+  p1 = ([-.2] + [float(i[5:]) for i in sys.argv[1:] if i[:5]=='--p1='])[-1]
+
+  title = 'Modeled DII-DIF time difference:  %f ppm (%em) at T=0; %f ppm/degC' % (p0,k,p1,)
 
   model2parNets = model2par( p0, p1, diffsGroup0[1], smoothTimes, diffSmooth )
 
   T0 = 1.724e8
 
   f,(timePlt,tempPlt) = plt.subplots( 2, 1, sharex=True)
-  plt.title( title )
+  tempPlt.title.set_text( 'Smoothed Temperatures' )
+  timePlt.title.set_text( title )
+
 
   ### Plot DII and DIF raw data as points
-  tempPlt.plot( smoothditemps.diitimes()-T0,smoothditemps.diitemps(), '.', label='DII' )
-  tempPlt.plot( smoothditemps.diftimes()-T0, smoothditemps.diftemps(), '.', label='DIF' )
-
   ### Plot smoothed DII and DIF data as lines
+  tempPlt.plot( smoothditemps.diitimes()-T0,smoothditemps.diitemps(), '.', label='DII' )
   tempPlt.plot( smoothTimes-T0,diiSmooth,label='DII smooth')
+
+  tempPlt.plot( smoothditemps.diftimes()-T0, smoothditemps.diftemps(), '.', label='DIF' )
   tempPlt.plot( smoothTimes-T0,difSmooth,label='DIF smooth')
 
   ### Plot DII-DIF differences, offset +10C
-  tempPlt.plot(smoothTimes-T0,10+diffSmooth,label='Smooth diff + 10')
+  tempPlt.plot(smoothTimes-T0,10+diffSmooth,label='Smooth diff (DII-DIF) + 10')
 
   tempPlt.legend(loc='center left')
 
