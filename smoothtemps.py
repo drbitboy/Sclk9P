@@ -26,7 +26,7 @@ class AllDiTemps:
 
   """
 
-  def __init__(self,argv=None):
+  def __init__(self,argv=None,verbose=True):
 
     rf = readtemps.__file__
     if rf[-4:-1]=='.py': rf = rf[:-1]
@@ -39,7 +39,8 @@ class AllDiTemps:
       fArg = sys.stdin
       fName = 'STDIN'
 
-    print( "Reading DI temperature data from %s ..."%(fName,) )
+    if verbose:
+      print( "Reading DI temperature data from %s ..."%(fName,) )
 
     tts = readtemps.readtemps( fArg )
 
@@ -56,10 +57,10 @@ class SmoothDiTemps:
 
   """
 
-  def __init__(self,ditemps=None):
+  def __init__(self,ditemps=None,verbose=True):
 
     ### .ditemps.dii and .ditemps.dif are DiScuTemps:
-    self.ditemps = ditemps or AllDiTemps(sys.argv[1:])
+    self.ditemps = ditemps or AllDiTemps(sys.argv[1:],verbose=verbose)
 
     self.sf = ([150.] + [float(i[5:]) for i in sys.argv[1:] if i[:5]=='--sf='])[-1]
 
