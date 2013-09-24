@@ -37,12 +37,14 @@ SPICE meta-kernel:
   are good enough
 
 \begindata
+PATH_VALUES = ( 'kernels' )
+PATH_SYMBOLS = ( 'K' )
 KERNELS_TO_LOAD = (
-'../kernels/naif0010.tls'
-'../kernels/dif_sclkscet_00015_science.tsc'
-'../kernels/dii_sclkscet_00008_science_btc.tsc'
-'../kernels/dii_preenc174_nav_v1.bsp'
-'../kernels/dif_preenc174_nav_v1.bsp'
+'$K/naif0010.tls'
+'$K/dif_sclkscet_00015_science.tsc'
+'$K/dii_sclkscet_00008_science_btc.tsc'
+'$K/dii_preenc174_nav_v1.bsp'
+'$K/dif_preenc174_nav_v1.bsp'
 )
 \begintext
 
