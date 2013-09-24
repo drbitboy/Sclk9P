@@ -3,7 +3,8 @@
 ========================================================================
 Usage:  python check_00.py
 
-- Load SCLK and LEAPSECOND SPICE Kernels, which are part of this
+- Load SCLK and LEAPSECOND SPICE Kernels from this __file__, parsed as
+  a SPICE meta-kernel; see \begindata and \begintext later in this
   __doc__ string
 
 - Set character TOIs (Times Of Impact) from three sources
