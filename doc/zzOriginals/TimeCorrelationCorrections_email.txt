@@ -1,0 +1,27 @@
+te: Sun, 18 Dec 2005 19:46:55 -0700
+From: "Walsh, Amy" <awalsh@ball.com>
+Subject: RE: SUMMARY:  16 Dec Telecon, 8 am PST:  TOI & Clock Correlations
+
+Attached is an Excel file that contains all of my working data and
+summaries of the reconstructed time correlation (TC) and external VTC latch
+packet data. Since we spoke on Friday, I discovered that much of the data I
+thought I had left to process for the Flyby did not have enough supporting
+information to allow me to reconstruct the missing nibble with certainty.
+The surrounding packets and command log info for DOY 178 only narrowed the
+missing nibble down to two possible values. The command log information was
+not available for the DOY 187 sessions and the I therefore left this data
+out of my summary data if the surrounding packets did not adequately bound
+the TC packet timestamps.
+ 
+John Swift: the data for Flyby SCU-A is on the worksheet:
+"FBTimeCorrFinal." This data is referenced from my working spreadsheet, so
+you will probably want to save that sheet as a text file before working
+with it. The data for Impactor is on "ImpTimeCorrFinal." The same goes for
+this spreadsheet.
+ 
+I'd appreciate a second set of eyes on my working spreadsheets, so if
+anyone has questions on this stuff, please let me know.
+ 
+Thanks,
+Amy
+

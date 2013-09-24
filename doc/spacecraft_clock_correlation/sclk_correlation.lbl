@@ -1,0 +1,130 @@
+PDS_VERSION_ID      = PDS3                                                    
+RECORD_TYPE         = "UNDEFINED"                                             
+LABEL_REVISION_NOTE = "2006-10-17 DI:McLaughlin Added Nav data set ids;       
+  2007-09-11 SBN:McLaughlin Updated for DIF-C-MRI-3-NAV-9P-ENCOUNTER-V1.1,    
+                            changed RECORD_TYPE to UNDEFINED;                 
+  2007-10-24 SBN:McLaughlin Updated raw NAV MRI and ITS DATA_SET_IDs          
+                            from V1.0 to V1.1;                                
+  2007-12-11 SBN:McLaughlin Added data set ID for this doc set;               
+  2009-05-28 EPOXI:McLaughlin Updated for EPOXI/EPOCh delivery.               
+  2010-08-12 EPOXI:T.Barnes   Added DSID for DOC SET V3.0 delivery.           
+  2011-02-07 EPOXI:McLaughlin Converted PDF to PDF/A.                         
+  2013-02-07  EPOXI:McLaughlin  Added DSIDs for Doc Set V4.0, Calibrated      
+    Calibrated HRII/HRIV/MRI/ITS 9P/Tempel1 V3.0.                             
+"                                                                             
+                                                                              
+^ASCII_DOCUMENT     = "SCLK_CORRELATION.ASC"                                  
+^PNG_DOCUMENT       = "FIG1_FLYBY_SCLK_OFFSET.PNG"                            
+^JPG_DOCUMENT       = { "FIG2_SCLK_TEMP_HISTORY.JPG",                         
+                        "FIG3_FLYBY_VS_IMPACTOR_SCLK.JPG" }                   
+                                                                              
+^PDF_DOCUMENT       = "SCLK_CORRELATION.PDF"                                  
+^WORD_DOCUMENT      = "SCLK_CORRELATION.DOC"                                  
+                                                                              
+DATA_SET_ID         = { "DI-C-HRII/HRIV/MRI/ITS-6-DOC-SET-V1.0",              
+                        "DI-C-HRII/HRIV/MRI/ITS-6-DOC-SET-V2.0",              
+                        "DI-C-HRII/HRIV/MRI/ITS-6-DOC-SET-V3.0",              
+                        "DIF-CAL-HRII-2-9P-CRUISE-V1.0",                      
+                        "DIF-CAL-HRIV-2-9P-CRUISE-V1.0",                      
+                        "DIF-CAL-MRI-2-9P-CRUISE-V1.0",                       
+                        "DII-CAL-ITS-2-9P-CRUISE-V1.0",                       
+                        "DIF-C-HRII-2-9P-ENCOUNTER-V1.0",                     
+                        "DIF-C-HRIV-2-9P-ENCOUNTER-V1.0",                     
+                        "DIF-C-MRI-2-9P-ENCOUNTER-V1.0",                      
+                        "DII-C-ITS-2-9P-ENCOUNTER-V1.0",                      
+                        "DIF-C-HRII-3/4-9P-ENCOUNTER-V1.0",                   
+                        "DIF-C-HRIV-3/4-9P-ENCOUNTER-V1.0",                   
+                        "DIF-C-MRI-3/4-9P-ENCOUNTER-V1.0",                    
+                        "DII-C-ITS-3/4-9P-ENCOUNTER-V1.0",                    
+                        "DIF-C-HRII-3/4-9P-ENCOUNTER-V2.0",                   
+                        "DIF-C-HRIV-3/4-9P-ENCOUNTER-V2.0",                   
+                        "DIF-C-MRI-3/4-9P-ENCOUNTER-V2.0",                    
+                        "DII-C-ITS-3/4-9P-ENCOUNTER-V2.0",                    
+                        "DIF-CAL-HRIV-2-NAV-9P-CRUISE-V1.0",                  
+                        "DIF-CAL-MRI-2-NAV-9P-CRUISE-V1.1",                   
+                        "DII-CAL-ITS-2-NAV-9P-CRUISE-V1.1",                   
+                        "DIF-C-HRIV-2-NAV-9P-ENCOUNTER-V1.0",                 
+                        "DIF-C-MRI-2-NAV-9P-ENCOUNTER-V1.1",                  
+                        "DII-C-ITS-2-NAV-9P-ENCOUNTER-V1.1",                  
+                        "DIF-C-HRIV-3-NAV-9P-ENCOUNTER-V1.0",                 
+                        "DIF-C-MRI-3-NAV-9P-ENCOUNTER-V1.1",                  
+                        "DII-C-ITS-3-NAV-9P-ENCOUNTER-V1.0",                  
+                        "DI-C-HRII/HRIV/MRI/ITS-6-DOC-SET-V4.0",              
+                        "DIF-C-HRII-3/4-9P-ENCOUNTER-V3.0",                   
+                        "DIF-C-HRIV-3/4-9P-ENCOUNTER-V3.0",                   
+                        "DIF-C-HRIV-3/4-9P-ENCOUNTER-V3.0",                   
+                        "DII-C-ITS-3/4-9P-ENCOUNTER-V3.0" }                   
+                                                                              
+OBJECT                = ASCII_DOCUMENT                                        
+  DOCUMENT_NAME       = "Deep Impact Spacecraft Clock Correlation"            
+  DOCUMENT_TOPIC_TYPE = "INSTRUMENT AND DATA SET DESCRIPTION"                 
+  INTERCHANGE_FORMAT  = "ASCII"                                               
+  DOCUMENT_FORMAT     = "TEXT"                                                
+  DESCRIPTION         = "This document summarizes the rationale for           
+    the archived correlations between the Deep Impact Flyby (DIF)             
+    and Impactor Spacecraft (DII) Clocks (SCLK) and Dynamical                 
+    Barycentric Time that are encapsulated in the SPICE SCLK-Kernel           
+    files in the PDS archive for Deep Impact. This document also              
+    explains why the clock correlation was changed about 2 seconds,           
+    retroactively, shortly after impact with comet 9P/Tempel 1."              
+  PUBLICATION_DATE    = 2006-06-22                                            
+END_OBJECT            = ASCII_DOCUMENT                                        
+                                                                              
+OBJECT                = PNG_DOCUMENT                                          
+  DOCUMENT_NAME       = "Figure 1"                                            
+  DOCUMENT_TOPIC_TYPE = "INSTRUMENT AND DATA SET DESCRIPTION"                 
+  INTERCHANGE_FORMAT  = "BINARY"                                              
+  DOCUMENT_FORMAT     = "PNG"                                                 
+  DESCRIPTION         = "This document is figure 1, referenced in             
+    the ASCII version the Deep Impact Spacecraft Clock Correlation            
+    document.  It is a plot of the TDB minus SCLK ticks, showing the          
+    TDB advancing about one second per day relative to the flyby SCLK."       
+  PUBLICATION_DATE    = 2006-06-22                                            
+END_OBJECT            = PNG_DOCUMENT                                          
+                                                                              
+OBJECT                = JPG_DOCUMENT                                          
+  DOCUMENT_NAME       = "Figures 2 and 3"                                     
+  DOCUMENT_TOPIC_TYPE = "INSTRUMENT AND DATA SET DESCRIPTION"                 
+  INTERCHANGE_FORMAT  = "BINARY"                                              
+  DOCUMENT_FORMAT     = "JPG"                                                 
+  DESCRIPTION         = "This document presents figures 2 and 3,              
+    referenced in the ASCII version the Deep Impact Spacecraft Clock          
+    Correlation document.  Figure 2 contains two plots illustrating           
+    the temperature history of the Flyby and Impactor spacecraft              
+    processing units for the approach and encounter phases of the             
+    mission.  Figure 3 is a  plot showing the relative offset                 
+    between the two spacecraft clocks during approach and encounter."         
+  PUBLICATION_DATE    = 2006-06-22                                            
+END_OBJECT            = JPG_DOCUMENT                                          
+                                                                              
+OBJECT                = PDF_DOCUMENT                                          
+  DOCUMENT_NAME       = "Deep Impact Spacecraft Clock Correlation"            
+  DOCUMENT_TOPIC_TYPE = "INSTRUMENT AND DATA SET DESCRIPTION"                 
+  INTERCHANGE_FORMAT  = "BINARY"                                              
+  DOCUMENT_FORMAT     = "ADOBE PDF"                                           
+  DESCRIPTION         = "This document summarizes the rationale for           
+    the archived correlations between the Deep Impact Flyby (DIF)             
+    and Impactor Spacecraft (DII) Clocks (SCLK) and Dynamical                 
+    Barycentric Time that are encapsulated in the SPICE SCLK-Kernel           
+    files in the PDS archive for Deep Impact. This document also              
+    explains why the clock correlation was changed about 2 seconds,           
+    retroactively, shortly after impact with comet 9P/Tempel 1."              
+  PUBLICATION_DATE    = 2006-06-22                                            
+END_OBJECT            = PDF_DOCUMENT                                          
+                                                                              
+OBJECT                = WORD_DOCUMENT                                         
+  DOCUMENT_NAME       = "Deep Impact Spacecraft Clock Correlation"            
+  DOCUMENT_TOPIC_TYPE = "INSTRUMENT AND DATA SET DESCRIPTION"                 
+  INTERCHANGE_FORMAT  = "BINARY"                                              
+  DOCUMENT_FORMAT     = "MICROSOFT WORD"                                      
+  DESCRIPTION         = "This document summarizes the rationale for           
+    the archived correlations between the Deep Impact Flyby (DIF)             
+    and Impactor Spacecraft (DII) Clocks (SCLK) and Dynamical                 
+    Barycentric Time that are encapsulated in the SPICE SCLK-Kernel           
+    files in the PDS archive for Deep Impact. This document also              
+    explains why the clock correlation was changed about 2 seconds,           
+    retroactively, shortly after impact with comet 9P/Tempel 1."              
+  PUBLICATION_DATE    = 2006-06-22                                            
+END_OBJECT            = WORD_DOCUMENT                                         
+                                                                              
+END                                                                           
