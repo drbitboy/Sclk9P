@@ -17,9 +17,9 @@ check_00.py - Initial test comparing DII and DIF SCLKs at TOI
 
 readtemps.py - Read DIF and DII clock temperatures
 
-doc/ - documents related to this project
+doc/ - Directory containing documents related to this project
 
-doc/zzOriginals/ - original versions of documents
+doc/00readme.txt - Descriptions of those documents
 
 spice/ - symlink to PySPICE/spice/
        - allows 'import spice' in Python code
@@ -47,30 +47,3 @@ Git cheat sheet
 git commit -a -m "..."
 git push -u origin master
 
-00readme.txt
-all_scutemp.txt
-check_00.py
-check_01.py
-check_02.py
-dif_scutemp.txt
-dii_dif_diffs.txt
-dii_scutemp.txt
-doc
-fit2png.py
-fit2png.pyc
-mrivis
-readtemps.py
-readtemps.pyc
-smoothtemps.py
-smoothtemps.pyc
-spice
-timediffs.py
-timediffs.pyc
-ttmodel.py
-TwoParamModel_case0.png
-TwoParamModel_case1.png
-VTCi_vs_VTCf.png
-VTCi_vs_VTCf.xcf
-x.x
-y.y
-z.z
