@@ -9,7 +9,25 @@ Understanding what the DI SpaceCraft cLocKs (SCLKs) were doing
 around encounter.
 
 
+=====
+Usage
+=====
 
+0) Prerequisites:
+
+0.1) Python 2.7
+
+0.1.1) Python modules:  numpy; scipy; pyfits; matplotlib; PySPICE.
+
+0.1.2) PySPICE (misc.py, object.py, _spice.so) in spice/ subdirectory of
+       this directory
+
+
+1) Read 00readme.txt (this file), doc/00readme.txt, kernels/00readme.txt,
+   and follow recommendations and read additional materials referenced.
+
+
+========
 Manifest
 ========
 
@@ -17,19 +35,23 @@ check_00.py - Initial test comparing DII and DIF SCLKs at TOI
 
 readtemps.py - Read DIF and DII clock temperatures
 
+kernels/ - SPICE kernels (SCLK, LSK, SPK)
+
+kernels/00readme.txt - description of SPICE kernels
+
+
 doc/ - Directory containing documents related to this project
 
 doc/00readme.txt - Descriptions of those documents
+
 
 spice/ - symlink to PySPICE/spice/
        - allows 'import spice' in Python code
        - not part of repo
        - see https://github.com/drbitboy/PySPICE
 
-../kernels/ - SCLK and LEAPSECOND kernels
-            - not part of repo
 
-
+=============
 Abbreviations
 =============
 
@@ -41,6 +63,7 @@ SPICE - Toolkit (code) and kernel files (data) for describing ancillary
         info about spacecraft observations; see http://naif.jpl.nasa.gov/
 
 
+===============
 Git cheat sheet
 ===============
 

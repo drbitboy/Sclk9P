@@ -2,9 +2,9 @@
 """
 \begindata
 KERNELS_TO_LOAD = (
-'../kernels/naif0010.tls'
-'../kernels/dif_sclkscet_00015_science.tsc'
-'../kernels/dii_sclkscet_00008_science_btc.tsc'
+'kernels/naif0010.tls'
+'kernels/dif_sclkscet_00015_science.tsc'
+'kernels/dii_sclkscet_00008_science_btc.tsc'
 )
 ETSTART = @2005-06-19T05:45:38.384
 \begintext
