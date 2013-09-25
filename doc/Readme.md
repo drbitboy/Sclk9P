@@ -5,7 +5,7 @@ Manifest of files under docs/ directory
 
 
 Description of initial work on DI Spacecraft Clock correlation ca. 2006
-=======================================================================
+-----------------------------------------------------------------------
 
 spacecraft_clock_correlation/
 
@@ -38,7 +38,7 @@ correlation ca.  2006, leading to this project.
 
 
 Tables of DI Flyby and Impactor SCU baseplate temperatures
-==========================================================
+----------------------------------------------------------
 
 SCU_BP_Temps.xls
 
@@ -49,7 +49,7 @@ SCU_BP_Temps.xls
 
 
 Workbook of SCLK correlation data between DIF and DII
-=====================================================
+-----------------------------------------------------
 
 ImpTimeCorr_doy170_181_with_Plot_wo_Hex2Dec.ods
 
@@ -63,14 +63,14 @@ ImpTimeCorr_doy170_181_with_Plot_wo_Hex2Dec.xls
 
 
 Vendor-supplied data about oscillators supplied to DI project
-===========================================================
+-----------------------------------------------------------
 
 SER_DI-SC-CDH-053_Oscillator_-_Vendor_Data_and_Analysis.doc
 
 
 
 SCLK Data Processing Anomalies
-==============================
+------------------------------
 
 sclk_fix.asc
 
@@ -85,23 +85,20 @@ http://pdssbn.astro.umd.edu/holdings/di-c-hrii_hriv_mri_its-6-doc-set-v4.0/docum
 
 
 Miscellaneous
-=============
-
-Miscellaneous
 -------------
 
 00readme.txt - this file
 
 
 Directory containing original versions of some of the documents above
-=====================================================================
+---------------------------------------------------------------------
 
 zzOriginals/
 
 
 
 VTC correlation corrections
-===========================
+---------------------------
 
 zzOriginals/TimeCorrelationCorrections.xls
 
@@ -113,7 +110,7 @@ zzOriginals/TimeCorrelationCorrections_email.txt
 
 
 DI SCLK background
-==================
+------------------
 
 zzOriginals/SCLK.doc
 
@@ -122,7 +119,7 @@ zzOriginals/SCLK.doc
 
 
 Original versions of files in docs/ directory
-==============================================
+----------------------------------------------
 
 zzOriginals/SCU_BP_Temps.xls
 
@@ -130,7 +127,7 @@ zzOriginals/SER_DI-SC-CDH-053_Oscillator_-_Vendor_Data_and_Analysis.doc
 
 
 Miscellaneous files
-====================
+--------------------
 
 zzOriginals/Oscillator_Profiles_Spreadsheet.xls
 
