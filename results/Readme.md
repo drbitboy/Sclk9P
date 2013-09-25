@@ -21,12 +21,10 @@ Amy also provided flight thermal data for the DI SCUs (Spacecraft CPUs), vendor 
 ![](https://github.com/drbitboy/Sclk9P/raw/master/results/ExistingKernelCorrelationWithExtension.png)
 
 ## Timing data; note especially the Good, Suspect and TOI points in the inset
-=============================================================================
 
 ![](https://github.com/drbitboy/Sclk9P/raw/master/doc/spacecraft_clock_correlation/fig2_sclk_temp_history.jpg)
 
 ## Thermal data
-===============
 
 At the time, the mission focus was on delivering prime data sets to PDS, so further work applying these data to improving the SCLK correlations was postponed, and later became the current project:  Characterization and Improvement of the SPICE Kernels from the Deep Impact Encounter with Comet Tempel 1.
 
