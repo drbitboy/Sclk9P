@@ -36,9 +36,18 @@ doc/ - Directory containing documentation for this project
 
 doc/00readme.txt - Descriptions of those documents
 
+ttmodel.py - Implements two-parameter time model for DI SCLKs
 
-readtemps.py - Python module to read DIF and DII clock temperatures
+timediffs.py - Module with Classes to read and difference DII and DIF times
 
+smoothtemps.py - Module with Classes to read and smooth DI temperatures
+
+readtemps.py - Python module to read DIF and DII temperatures
+
+
+all_scutemp.txt, dif_scutemp.txt, dii_scutemp.txt - Temperature data
+
+dii_dif_diffs.txt - DIF and DII SCLK summary clock correlation data
 
 kernels/ - SPICE kernels (SCLK, LSK, SPK)
 
@@ -49,6 +58,8 @@ spice/ - symlink to PySPICE/spice/
        - allows 'import spice' in Python code
        - not part of repo
        - see https://github.com/drbitboy/PySPICE
+
+00readme.txt, Readme.md - this file
 
 
 check_00.py - Test script comparing DII, DIF SCLKs and VTCs from kernels
@@ -71,6 +82,8 @@ DIF - Deep Impact Flyby spacecraft
 TOI - Time Of Impact
 
 S/C - SpaceCraft
+
+SCU - S/C CPU
 
 SCLK - S/C clock representation e.g. '1/0123456789:012'; see SPICE
 
