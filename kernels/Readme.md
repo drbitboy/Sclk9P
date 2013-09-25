@@ -27,7 +27,7 @@ dii_sclkscet_00008.tsc - DII operations SCLK
 
 dii_sclkscet_00008_science.tsc - DII SCLK-kernel adjusted for TOI
 
-dii_sclkscet_00008_science_btc.tsc - DII SCLK-ernel adjusted for TOI
+dii_sclkscet_00008_science_btc.tsc - DII SCLK-kernel adjusted for TOI
 
 
 Ephemeris (trajectory) kernels
