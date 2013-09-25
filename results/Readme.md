@@ -18,11 +18,17 @@ After the end of the prime mission, limited efforts were made to improve the SCL
 
 Amy also provided flight thermal data for the DI SCUs (Spacecraft CPUs), vendor data describing the thermal performance of the SCLK oscillators, five other reliable time correlations within a fortnight of TOI, and one other suspect correlation a few days before TOI.  The available data are summarized in following figures:
 
-![Timing data; note especially the Good, Suspect and TOI points in the inset](https://github.com/drbitboy/Sclk9P/raw/master/results/ExistingKernelCorrelationWithExtension.png)
+![](https://github.com/drbitboy/Sclk9P/raw/master/results/ExistingKernelCorrelationWithExtension.png)
 
-![Thermal data](https://github.com/drbitboy/Sclk9P/raw/master/doc/spacecraft_clock_correlation/fig2_sclk_temp_history.jpg)
+## Timing data; note especially the Good, Suspect and TOI points in the inset
+=============================================================================
 
-At the time, our focus was on delivering prime mission data sets to PDS, so further work applying these data to improving the SCLK correlations was postponed, and later became the current project:  Characterization and Improvement of the SPICE Kernels from the Deep Impact Encounter with Comet Tempel 1.
+![](https://github.com/drbitboy/Sclk9P/raw/master/doc/spacecraft_clock_correlation/fig2_sclk_temp_history.jpg)
+
+## Thermal data
+===============
+
+At the time, the mission focus was on delivering prime data sets to PDS, so further work applying these data to improving the SCLK correlations was postponed, and later became the current project:  Characterization and Improvement of the SPICE Kernels from the Deep Impact Encounter with Comet Tempel 1.
 
 Project Scope and Cut To The Chase
 ==================================
