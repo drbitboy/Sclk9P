@@ -57,9 +57,19 @@ Abbreviations
 =============
 
 DI - Deep Impact (mission, project, spacecraft)
+
 DII - Deep Impact Impactor spacecraft
+
 DIF - Deep Impact Flyby spacecraft
+
 TOI - Time Of Impact
+
+S/C - SpaceCraft
+
+SCLK - S/C clock representation e.g. '1/0123456789:012'; see SPICE
+
+VTC - Vehicle TimeCode, Floating point representation of S/C seconds
+
 SPICE - Toolkit (code) and kernel files (data) for describing ancillary
         info about spacecraft observations; see http://naif.jpl.nasa.gov/
 
