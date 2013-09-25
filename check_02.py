@@ -15,13 +15,12 @@ PATH_VALUES = ( 'kernels' )
 KERNELS_TO_LOAD = (
 '$K/naif0010.tls'
 '$K/dif_sclkscet_00015_science.tsc'
-'$K/dii_sclkscet_00008_science.tsc'
+'$K/dii_sclkscet_00008_science_btc.tsc'
 )
 ETSTART = @2005-03-18T05:45:38.384
 \begintext
 ETSTART is TOI(tparse('2005-07-04T05:44:34.2')) + 64.184s - 108d
 Alternate DII SCLK kernels:
-'$K/dii_sclkscet_00008_science_btc.tsc'
 '$K/dii_sclkscet_00008_science.tsc'
 '$K/dii_sclkscet_00008.tsc'
 ========================================================================
@@ -35,27 +34,39 @@ import matplotlib.pyplot as plt
 spice.furnsh(__file__)
 et = spice.gdpool( 'ETSTART', 0, 1 )[1]
 
-### Set up for 108 days
+### Set up for 108d
 spanDays = 108
 diffs = range(spanDays+1)
 doys = [ i+185-spanDays for i in diffs ]
+
 scids = [-70,-140]
 n = len(scids)
 rn = range(n)
+f3 = lambda k : ('%.3f '* k).strip()
 
+### Loop over 108d
 for iDay in diffs:
+  ### Convert ET to UTC, SCLK, and Vehicle Time Code (=Encoded SCLK/256)
   utcs= [ spice.et2utc( et, 'isoc', 3), spice.et2utc( et, 'isod', 3) ]
   sclks = [ spice.sce2s(scids[i],et) for i in rn ]
-  encds = [ spice.scencd(scids[i],sclks[i])/256e0 for i in rn ]
-  sencds = '%.3f  %.3f' % tuple([ spice.scencd(scids[i],sclks[i])/256e0 for i in rn ])
-  diffs[iDay] = [encds[0] - encds[1]] + [ et-encds[i] for i in rn ]
-  diff3 = '%.3f  %.3f  %.3f' % tuple( diffs[iDay] )
-  print( (utcs,sclks,sencds,diff3,) )
+  vtcs = [ spice.scencd(scids[i],sclks[i])/256e0 for i in rn ]
+  ### Calculate differences
+  diffs[iDay] = [vtcs[0] - vtcs[1]] + [ et-vtcs[i] for i in rn ]
+  diff3 = f3(n+1) % tuple( diffs[iDay] )
+  ### Build strings, output ET, SCLKs, differences for every ninth day
+  if (iDay%9) == 0:
+    svtcs = f3(n) % tuple([ spice.scencd(scids[i],sclks[i])/256e0
+                            for i in rn
+                          ])
+    print( (utcs,sclks,svtcs,diff3,) )
+
+  ### Increment ET by 1d
   et += spice.spd()
 
 print(__doc__.strip().replace('\b','\\b'))
 
 
+### Plot differences
 labels = '(VTCi,FM003,8309)-(VTCf,FM001,8306) ET-(VTCi,FM003,8309) ET-(VTCf,FM001,8306)'.split()
 for i in range(3):
   label = labels.pop(0)
