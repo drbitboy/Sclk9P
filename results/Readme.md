@@ -56,9 +56,15 @@ Two conclusions are suggested by these plots:
 
 - The plot makes physical sense to first order and suggests the selected temperature sensor is a reasonable analog for the oscillator temperature:  the average thermal effect on the vendor-supplied oscillators, per the [supplied documentation](../doc/SER_DI-SC-CDH-053_Oscillator_-_Vendor_Data_and_Analysis.doc), is -0.65 PPM/degC; that negative value means when the oscillator temperature decreases, the oscillator frequency increases, and vice versa; so when the DIF temperature drops at around TOI-5d while the DII temperature stays relatively constant, the [DII - DIF] difference slope decreases, consistent with the cooler DIF oscillator running faster per the negative thermal rate constant; similarly, when the DII oscillator temperature rises, then falls, between TOI-2d and TOI, the difference slope decreases, then increases, respectively.
 
-- The good points lie almost on a (mean-slope-removed) horizontal line with the TOI point.  Since those good points lie more or less on the interpolated model between the DOY 164 correlation point and the TOI point (see the first figure in Background above), any model which has a significant excursion from the zero line should return to a point near (i.e. within the error budget; see below) of the line by TOI.
+- The good points lie almost on a (mean-slope-removed) horizontal line with the TOI point.  Since those good points lie more or less on the interpolated model between the DOY 164 correlation point and the TOI point (see the first figure in Background above), any model which has a significant excursion from the zero line should return to a point near (i.e. within the error budget of at most 200ms; see below) of the line by TOI.
 
-It is that second point that puts the nail in the coffin of this approach.
+It is that second point that puts the nail in the coffin of this approach.  The five groups of green good points on the left form a smooth hump, consistent with the gradual drift in temperatures over DOYs 170 to 177, as seen in the following zoomed-in section of that plot:
+
+![Zoom in](TwoParamModel_case0a.png)
+
+Any physically plausible temperature-dependent SCLK model that fits those five groups of points, whether or not it goes near the suspect point, must return to within 200ms (the error budget) of the TOI point.  Any two-parameter model with a temperature coefficient of about a half a PPM per degC (per the Vendor document) as displayed above and described below, does not come close, as the [DII - DIF] difference will decrease far more over the six days of reduced DIF temperatures and increased DII temperatures, than can be recovered in the final day when the temperatures reverse that trend.  Furthermore, there is an expected delay of the flash from the TOI of up to 200ms (see Error budget, below) which moves that TOI point up, even farther away from any reasonable model.
+
+So the only way to stay near the TOI point will be to reduce the temperature coefficient to the point where the model is basically linear in time, which is essentially what we started with, and will therefore yield no significant improvement to the SCLK model.
 
 
 Discussion
@@ -67,7 +73,8 @@ Discussion
 
 ### Error budget, errors and other subtleties
 
-- The uncertainty in the DIF image-derived TOI is about 30ms, have the image cadence of the MRIVIS images.  That TOI is based on the appearance of the flash in the DIF images.  Those images had an integration time of 51ms and were initiated every 60ms.  The appearance of the flash in the first "flash image" image is unambiguous.  However the flash could have occured anywhere during that image or even at or near the end of the previous image, giving an uncertainty of about 30ms from the mid-exposure time of the flash image.  Also, the delay between TOI and the flash has been estimated by the project co-investigators to be as much as 200ms.  That is a delay is therefore asymmetric i.e. the TOI can only be be before (_less than_), and _not_ after (greater than), the time of the flash image.  So the delay does not figure into any formal uncertainty calculation, but it should be noted that its presence is a bias and it can only increase the [DII - DIF] SCLK difference i.e. move the TOI point _up_ in the plot above.
+- The uncertainty in the DIF image-derived TOI is about 30ms, have the image cadence of the MRIVIS images.  That TOI is based on the appearance of the flash in the DIF images.  Those images had an integration time of 51ms and were initiated every 60ms.  The appearance of the flash in the first "flash image" image is unambiguous.  However the flash could have occured anywhere during that image or even at or near the end of the previous image, giving an uncertainty of about 30ms from the mid-exposure time of the flash image.  Also, the delay between TOI and the flash has been estimated by the project co-investigators to be as much as 200ms.  That delay is asymmetric i.e. the TOI can only occur before (i.e. be _less than_), and _not_ after (i.e be greater than), the time of the flash.  So the delay does not figure into any formal uncertainty calculation, but it should be noted that its presence is a bias and it can only increase the [DII - DIF] SCLK difference i.e. move the TOI point _up_ in the plot above.
+
 
 - The uncertainty in the DII image-derived TOI is about 50ms, dominated by the integration time of the final ITSVIS images (100ms).
 
