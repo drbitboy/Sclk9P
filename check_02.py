@@ -30,6 +30,7 @@ import os
 import sys
 import spice
 import pprint
+import timediffs
 import matplotlib.pyplot as plt
 
 ### Load meta-kernel, get start time ETTOI-108d
@@ -37,7 +38,6 @@ spice.furnsh(__file__)
 
 ### Override any kernels with sys.argv[1:]
 for sclkk in sys.argv[1:]: spice.furnsh(sclkk)
-
 
 ### Get TEXT kernel list
 ks = '\n'.join([os.path.basename(spice.kdata(i,'text')[0]) for i in range(spice.ktotal('TEXT'))])
@@ -73,14 +73,42 @@ for iDay in diffs:
   ### Increment ET by 1d
   et += spice.spd()
 
+et -= spice.spd()
+
 print(__doc__.strip().replace('\b','\\b'))
 
+### Get DII & DIF time correlation data for approach, suspect point,
+### and TOI times
+
+def convertDiffs(diXDiffs):
+  if isinstance(diXDiffs, timediffs.didiff):
+    diVTC = diXDiffs.imFracSec
+    diSCLK = '%010.0f:%03.0f' % (int(diVTC),256 * (diVTC%1.0),)
+    diET = spice.scs2e(-70,diSCLK)
+    diDoy = 185 + ((diET - et) / spice.spd())
+    return diDoy,diXDiffs.imFbDiff
+  else:
+    rtnDoys = []
+    rtnDiffs = []
+    for diXDiff in diXDiffs:
+      diDoy,diDiff = convertDiffs(diXDiff)
+      rtnDoys.append(diDoy)
+      rtnDiffs.append(diDiff)
+
+  return (rtnDoys,rtnDiffs,)
+
+diGoods, diBads, diTOI = [convertDiffs(i) for i in timediffs.parsedoclines()]
 
 ### Plot differences
 labels = '(VTCi,FM003,8309)-(VTCf,FM001,8306) ET-(VTCi,FM003,8309) ET-(VTCf,FM001,8306)'.split()
 for i in range(3):
   label = labels.pop(0)
   plt.plot( doys, [diff3[i] for diff3 in diffs], '.' if label[:1]=='E' else '', label=label )
+
+plt.plot( diGoods[0], diGoods[1], 'o', label="Good Correlations" )
+plt.plot( diBads[0], diBads[1], 'o', label="Suspect Correlations" )
+plt.plot( diTOI[0], diTOI[1], 'o', label="TOI" )
+
 plt.legend( loc='upper left' )
 plt.xlabel("2005 DOY")
 plt.ylabel("Clock differences from SCLK kernels, s")
