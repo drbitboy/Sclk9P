@@ -7,7 +7,7 @@ Brian Carcich, Latchmoor Services LLC, working for Dr. Tony Farnham of UMd
 Understanding what the DI SpaceCraft cLocKs (SCLKs) were doing
 around encounter.
 
-![](https://raw.github.com/drbitboy/Sclk9P/master/results/TwoParamModel_case0.png)
+![](https://github.com/drbitboy/Sclk9P/raw/master/results/TwoParamModel_case0.png)
 
 
 ==========
