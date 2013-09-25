@@ -19,8 +19,9 @@ Usage
 
 0.1.1) Python modules:  numpy; scipy; pyfits; matplotlib; PySPICE.
 
-0.1.2) PySPICE (misc.py, object.py, _spice.so) in spice/ subdirectory of
-       this directory
+0.1.2) PySPICE (misc.py, object.py, _spice.so, build from Git repo
+       https://github.com/drbitboy/PySPICE) in spice/ subdirectory of
+       this directory.
 
 
 1) Read 00readme.txt (this file), doc/00readme.txt, kernels/00readme.txt,
@@ -31,7 +32,7 @@ Usage
 Manifest
 ========
 
-check_00.py - Initial test comparing DII and DIF SCLKs at TOI
+check_0{0,1,2}.py - Initial test comparing DII and DIF SCLKs
 
 readtemps.py - Read DIF and DII clock temperatures
 
