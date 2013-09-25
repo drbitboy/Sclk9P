@@ -20,7 +20,7 @@ Amy also provided flight thermal data for the DI SCUs (Spacecraft CPUs), vendor 
 
 ![Timing data](https://github.com/drbitboy/Sclk9P/raw/master/results/ExistingKernelCorrelationWithExtension.png)
 
-__Timing data; the red and green points, and the blue line, are based on SPICE SCLK kernels (models); note that the the Good, Suspect and TOI points in the inset are offset from the SCLK model and suggest a different slope__
+__Timing data; the red and green points, and the blue line, are based on SPICE SCLK kernels (models); note that the Good, Suspect and TOI points in the inset are offset from the SCLK model and suggest a different slope__
 
 
 ![Thermal data](https://github.com/drbitboy/Sclk9P/raw/master/doc/spacecraft_clock_correlation/fig2_sclk_temp_history.jpg)
@@ -44,9 +44,12 @@ To cut to the chase, the answer is no, the additional data do not suggest a phys
 Summary
 =======
 
-Refer to the following figure:
+The following figure combines the thermal data with the timing difference data: 
 
-![](https://github.com/drbitboy/Sclk9P/raw/master/results/TwoParamModel_case0.png)
+![Project summary](https://github.com/drbitboy/Sclk9P/raw/master/results/TwoParamModel_case0.png)
 
+The lower plot shows the thermal data over the last two weeks before TOI.  The blue points are for DII, the red are for DIF, and the lines represent smoothed data used for interpolation.
+
+The upper plot represents drift in differences between the DII and DIF spacecraft clocks over the same time period.  Both clocks have the same nominal starting point (the J2000 epoch, 2000-01-01T12:00:00 TDT) run within a few PPM of the same rate, 1Hz, for the most-signficant ("tick") counter, so plotting one against the other would lose the subtleties of the thermal effect on drift in the noise.  Instead, the mean drift slope (_a la_ continuum in spectroscopy) between the DII and DIF clocks has been removed to emphasize the changes over this time period.  The large large blue point on the left is the average of the first group of green "Good" points and has been arbitrarily set to zero offset on this plot; the five groups of small green points on the left are the good points obtained by Amy; the one red point is the Suspect point; and the cyan point is the TOI derived from the DII and DIF imaging.  The line is a two-parameter model fit to the data.  
 
 
