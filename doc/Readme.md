@@ -77,20 +77,20 @@ sclk_fix.asc
 - SCLK Data Processing Anomalies, from Deep Impact documentation data set
   in the Planetary Data System (PDS).  This ASCII document contains
   background information about the DI spacecraft clocks and the
-  representation of spacecraft time on the DI spacecraft.  The original
-  source data set URL is
+  representation of spacecraft time on the DI spacecraft.  The source URL
+  is
 
-http://pdssbn.astro.umd.edu/holdings/di-c-hrii_hriv_mri_its-6-doc-set-v4.0/
-
-  and the relative path from there to that file is
-
-    document/flight_data/sclk_fix/sclk_fix.asc
+http://pdssbn.astro.umd.edu/holdings/di-c-hrii_hriv_mri_its-6-doc-set-v4.0/document/flight_data/sclk_fix/sclk_fix.asc
 
 
-This file
-=========
 
-00readme.txt
+Miscellaneous
+=============
+
+Miscellaneous
+-------------
+
+00readme.txt - this file
 
 
 Directory containing original versions of some of the documents above
