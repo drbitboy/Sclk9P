@@ -65,7 +65,7 @@ Discussion
 ==========
 
 
-# Error budget, errors and other subtleties
+### Error budget, errors and other subtleties
 
 - The uncertainty in the DIF image-derived TOI is about 30ms, have the image cadence of the MRIVIS images.  That TOI is based on the appearance of the flash in the DIF images.  Those images had an integration time of 51ms and were initiated every 60ms.  The appearance of the flash in the first "flash image" image is unambiguous.  However the flash could have occured anywhere during that image or even at or near the end of the previous image, giving an uncertainty of about 30ms from the mid-exposure time of the flash image.  Also, the delay between TOI and the flash has been estimated by the project co-investigators to be as much as 200ms.  That is a delay is therefore asymmetric i.e. the TOI can only be be before (_less than_), and _not_ after (greater than), the time of the flash image.  So the delay does not figure into any formal uncertainty calculation, but it should be noted that its presence is a bias and it can only increase the [DII - DIF] SCLK difference i.e. move the TOI point _up_ in the plot above.
 
