@@ -52,16 +52,22 @@ The lower plot shows the thermal data over the last two weeks before TOI.  The b
 
 The upper plot represents drift in differences between the DII and DIF spacecraft clocks over the same time period.  Both clocks have the same nominal starting point (the J2000 epoch, 2000-01-01T12:00:00 TDT) run within a few PPM of the same rate, 1Hz, for the most-signficant ("tick") counter, so plotting one against the other would lose the subtleties of the thermal effect on drift in the slope.  Instead, the mean drift slope (_a la_ continuum in spectroscopy) between the DII and DIF clocks has been removed to emphasize the changes over this time period.  The large large blue point on the left is the average of the first group of green good points and has been arbitrarily set to zero offset on this plot; the five groups of small green points on the left are the good points obtained by Amy; the one red point is the Suspect point; and the cyan point is the TOI derived from the DII and DIF imaging.  The line is a two-parameter model fit to the five groups of good data, then extrapolated to TOI.
 
-Two things are suggested by these plots:
+Two conclusions are suggested by these plots:
 
 - The plot makes physical sense to first order and suggests the selected temperature sensor is a reasonable analog for the oscillator temperature:  the average thermal effect on the vendor-supplied oscillators, per the [supplied documentation](../doc/SER_DI-SC-CDH-053_Oscillator_-_Vendor_Data_and_Analysis.doc), is -0.65 PPM/degC; that negative value means when the oscillator temperature decreases, the oscillator frequency increases, and vice versa; so when the DIF temperature drops at around TOI-5d while the DII temperature stays relatively constant, the [DII - DIF] difference slope decreases, consistent with the cooler DIF oscillator running faster per the negative thermal rate constant; similarly, when the DII oscillator temperature rises, then falls, between TOI-2d and TOI, the difference slope decreases, then increases, respectively.
 
-- The good points lie almost on a (mean-slope-removed) horizontal line with the TOI point.  Since those good points lie more or less on the interpolated model between the DOY 164 correlation point and the TOI point (see the first figure in Background above), any model which has a significant excursion from the zero line should return to a point near (i.e. within the error budget) of the line by TOI.
+- The good points lie almost on a (mean-slope-removed) horizontal line with the TOI point.  Since those good points lie more or less on the interpolated model between the DOY 164 correlation point and the TOI point (see the first figure in Background above), any model which has a significant excursion from the zero line should return to a point near (i.e. within the error budget; see below) of the line by TOI.
 
-Error budget, errors and other subtleties
-=========================================
+It is that second point that puts the nail in the coffin of this approach.
 
-- The greatest uncertainty is in the DIF image-derived TOI.  That TOI is based on the appearance of the flash in the DIF images.  Those images had an integration time of 51ms and were initiated every 60ms.  The appearance of the flash in the first image is unambiguous, however the flash could have occured anywhere during that image or even at or near the end of the previous image, giving an uncertainty of up to 60ms.  Also, the delay between TOI and the flash has been estimated by the project co-investigators to be as much as 200ms.  However, that is a delay is therefore asymmetric i.e. the TOI can only be be _before_, and _not_ after, the flash.  So the delay should not figure into any formal uncertainty calculation, but should be noted that it can only increase the [DII - DIF] SCLK difference i.e. it moves the TOI point _up_ in the plot above.
+
+Discussion
+==========
+
+
+## Error budget, errors and other subtleties
+
+- The uncertainty in the DIF image-derived TOI is about 30ms, have the image cadence of the MRIVIS images.  That TOI is based on the appearance of the flash in the DIF images.  Those images had an integration time of 51ms and were initiated every 60ms.  The appearance of the flash in the first "flash image" image is unambiguous.  However the flash could have occured anywhere during that image or even at or near the end of the previous image, giving an uncertainty of about 30ms from the mid-exposure time of the flash image.  Also, the delay between TOI and the flash has been estimated by the project co-investigators to be as much as 200ms.  That is a delay is therefore asymmetric i.e. the TOI can only be be before (_less than_), and _not_ after (greater than), the time of the flash image.  So the delay does not figure into any formal uncertainty calculation, but it should be noted that its presence is a bias and it can only increase the [DII - DIF] SCLK difference i.e. move the TOI point _up_ in the plot above.
 
 - The uncertainty in the DII image-derived TOI is dominated by the integration time of the final images, 100ms.
 
