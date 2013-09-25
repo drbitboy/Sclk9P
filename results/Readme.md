@@ -20,7 +20,7 @@ Amy also provided flight thermal data for the DI SCUs (Spacecraft CPUs), vendor 
 
 ![Timing data](https://github.com/drbitboy/Sclk9P/raw/master/results/ExistingKernelCorrelationWithExtension.png)
 
-__Timing data; note especially the Good, Suspect and TOI points in the inset__
+__Timing data; the red and green points, and the blue line, are based on SPICE SCLK kernels (models); note that the the Good, Suspect and TOI points in the inset are offset from the SCLK model and suggest a different slope__
 
 
 ![Thermal data](https://github.com/drbitboy/Sclk9P/raw/master/doc/spacecraft_clock_correlation/fig2_sclk_temp_history.jpg)
