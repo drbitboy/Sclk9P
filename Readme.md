@@ -1,3 +1,4 @@
+==================================================
 Characterization and Improvement of the SPICE Kernels
 from the Deep Impact Encounter with Comet Tempel 1
 ==================================================
@@ -32,24 +33,31 @@ Usage
 Manifest
 ========
 
-check_0{0,1,2}.py - Initial test comparing DII and DIF SCLKs
 
-readtemps.py - Read DIF and DII clock temperatures
+doc/ - Directory containing documentation for this project
+
+doc/00readme.txt - Descriptions of those documents
+
+
+readtemps.py - Python module to read DIF and DII clock temperatures
+
 
 kernels/ - SPICE kernels (SCLK, LSK, SPK)
 
 kernels/00readme.txt - description of SPICE kernels
 
 
-doc/ - Directory containing documents related to this project
-
-doc/00readme.txt - Descriptions of those documents
-
-
 spice/ - symlink to PySPICE/spice/
        - allows 'import spice' in Python code
        - not part of repo
        - see https://github.com/drbitboy/PySPICE
+
+
+check_00.py - Test script comparing DII, DIF SCLKs and VTCs from kernels
+
+check_01.py -  "
+
+check_02.py -  "; also plots data
 
 
 =============
