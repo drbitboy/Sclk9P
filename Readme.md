@@ -10,6 +10,13 @@ around encounter.
 ![](https://github.com/drbitboy/Sclk9P/blob/master/results/TwoParamModel_case0.png)
 
 
+==========
+QuickStart
+==========
+
+[Click here to jump directly to the results](results/)
+
+
 =====
 Usage
 =====
