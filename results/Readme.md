@@ -64,7 +64,13 @@ It is that second point that puts the nail in the coffin of this approach.  The 
 
 Any physically plausible temperature-dependent SCLK model that fits those five groups of points, whether or not it goes near the suspect point, must return to within 200ms (the error budget) of the TOI point.  Any two-parameter model with a temperature coefficient of about a half a PPM per degC (per the Vendor document) as displayed above and described below, does not come close, as the [DII - DIF] difference will decrease far more over the six days of reduced DIF temperatures and increased DII temperatures, than can be recovered in the final day when the temperatures reverse that trend.  Furthermore, there is an expected delay of the flash from the TOI of up to 200ms (see Error budget, below) which moves that TOI point up, even farther away from any reasonable model.
 
-So the only way to stay near the TOI point will be to reduce the temperature coefficient to the point where the model is basically linear in time, which is essentially what we started with, and will therefore yield no significant improvement to the SCLK model.
+So any SCLK model that starts on the good points and finishes near the TOI point will have reduced the temperature coefficient to the point where the model is basically linear in time, which is essentially what we started with, and will therefore yield no significant improvement to the SCLK model.
+
+We could impose a slope more in line with the good and TOI points than the current model, but 
+
+- that would only show up in images far away from the TOI where timing errors are already in the noise, and
+
+- near TOI the current model is already well within the error budget.
 
 
 Discussion
