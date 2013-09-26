@@ -167,6 +167,10 @@ Refer to the comments in those scripts for their use, and to the Readme.md file 
 
 #### Plot of calibrated brightness sums along columns in MRIVIS images:
 
+##### Full plot
+
 ![](../flash.png)
+
+##### Enlarged inset
 
 ![](../flash_inset.png)
