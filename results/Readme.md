@@ -72,7 +72,7 @@ Two conclusions are suggested by these plots:
 
 - The good points lie almost on a (mean-slope-removed) horizontal line with the TOI point.  Since those good points lie more or less on the interpolated model between the DOY 164 correlation point and the TOI point (see the first figure in Background above), any model which has a significant excursion from the zero line should return to a point near (i.e. within the error budget of at most 200ms; see below) of the line by TOI.
 
-It is that second point that puts the nail in the coffin of this approach.  The five groups of green good points on the left form a smooth hump, consistent with the gradual drift in temperatures over DOYs 170 to 177, as seen in the following zoomed-in section of that plot:
+It is that second conclusion that puts the nail in the coffin of this approach.  The five groups of green good points on the left form a smooth hump, consistent with the gradual drift in temperatures over DOYs 170 to 177, as seen in the following zoomed-in section of that plot:
 
 ![Zoom in](TwoParamModel_case0a.png)
 
