@@ -174,3 +174,4 @@ Refer to the comments in those scripts for their use, and to the Readme.md file 
 ##### Enlarged inset
 
 ![](../doc/flash_inset.png)
+
