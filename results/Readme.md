@@ -153,3 +153,20 @@ Refer to the comments in those scripts for their use, and to the Readme.md file 
 
   - The temperature telemetry points chosen, FM001 and FM003 for DIF and DII, respectively, are not on the oscillators themselves, so the temperature readings are for a point near the oscillators.  However, they are the closest temperature points to the oscillators and are the best available.  For the purposes of this project, we assume the readings represent a constant offset from the actual oscillator temperatures.
 
+
+### TOI flash in DI Flyby MRIVIS imaging
+
+#### Image times
+
+- mv0173727702_9000910_062_dn.fit  RECSCLK = '1/0173727702.188'
+- mv0173727702_9000910_063_dn.fit  RECSCLK = '1/0173727702.203'
+- mv0173727702_9000910_064_dn.fit  RECSCLK = '1/0173727702.218'
+- mv0173727702_9000910_065_dn.fit  RECSCLK = '1/0173727702.233'
+- mv0173727703_9000910_066_dn.fit  RECSCLK = '1/0173727703.004'
+- mv0173727703_9000910_067_dn.fit  RECSCLK = '1/0173727703.019'
+
+#### Plot of calibrated brightness sums along columns in MRIVIS images:
+
+![](../flash.png)
+
+![](../flash_zoom.png)
