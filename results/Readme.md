@@ -7,6 +7,19 @@ Brian Carcich, Latchmoor Services LLC, working for Dr. Tony Farnham of UMd
 Understanding what the DI SpaceCraft cLocKs (SCLKs) were doing
 around encounter.
 
+
+Project Scope and Cutting To The Chase
+======================================
+
+The goals of this project were 
+
+- to determine if the additional thermal data, and later SCLK correlation data, can facilitate significantly improving our knowledge of the timing of the DI TOI, perhaps tying it back to earth-based observations, and if so, 
+
+- to provide an updated timing model, as well as updated trajectories, in the form of SPICE SCLK- and SP-Kernels
+
+To cut to the chase, the answer is no, the additional data are not adequate to build a physically plausible model consistent with the available data that will improve the timing model and significantly improve the science obtained from the mission.
+
+
 Background
 ==========
 
@@ -30,21 +43,11 @@ __Thermal data; note that these temperature sensors are near, but not on, the os
 
 At the time, the mission focus was on delivering prime data sets to PDS, so further work applying these data to improving the SCLK correlations was postponed, and later became the current project:  Characterization and Improvement of the SPICE Kernels from the Deep Impact Encounter with Comet Tempel 1.
 
-Project Scope and Cut To The Chase
-==================================
-
-The goals of this project were 
-
-- to determine if the additional thermal data, and later SCLK correlation data, can facilitate significantly improving our knowledge of the timing of the DI TOI, perhaps tying it back to earth-based observations, and if so, 
-
-- to provide an updated timing model, as well as updated trajectories, in the form of SPICE SCLK- and SP-Kernels
-
-To cut to the chase, the answer is no, the additional data are not adequate to build a physically plausible model consistent with the available data that will improve the timing model and significantly improve the science obtained from the mission.
 
 Summary
 =======
 
-The following figure combines the thermal data with the timing difference data: 
+The figure below combines the thermal data with the timing difference data: 
 
 ![Project summary](TwoParamModel_case0.png)
 
