@@ -92,7 +92,7 @@ Discussion
 
 ### Two-parameter modeling of thermal effects on oscillators
 
-The most reliable data available to build the mode are
+The most reliable data available to build the model are
 
 - the temperature data from telemetry for temperature sensors located near the oscillators from TOI-15d (DOY 170) to TOI.
 
