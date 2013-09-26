@@ -149,7 +149,7 @@ Refer to the comments in those scripts for their use, and to the Readme.md file 
 
   - The light-time transmission from the comet to the DIF means the actual DIF TOI is about 30ms earlier than using the DIF image timestamps directly; again, this increases the [DII - DIF] difference.
 
-  - A anomaly was discovered during the EPOXI extended mission in the way image timestamps were processed, as described [here](../doc/sclk_fix.asc).  The net effect would be to reduce the [DII - DIF] difference by at most 20ms, essentially negating the light-time effect above.
+  - An anomaly was discovered during the EPOXI extended mission in the way image timestamps were processed, as described [here](../doc/sclk_fix.asc).  The net effect would be to reduce the [DII - DIF] difference by at most 20ms, essentially negating the light-time effect above.
 
   - The temperature telemetry points chosen, FM001 and FM003 for DIF and DII, respectively, are not on the oscillators themselves, so the temperature readings are for a point near the oscillators.  However, they are the closest temperature points to the oscillators and are the best available.  For the purposes of this project, we assume the readings represent a constant offset from the actual oscillator temperatures.
 
