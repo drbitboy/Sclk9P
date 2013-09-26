@@ -120,7 +120,7 @@ define the initial conditions of the two clocks.  From there, with the thermal c
 
 - The second free parameter is an estimate of the temperature coefficient, PPM/degC
 
-Ground truth is the Good [DII - DIFF] timing differences from TOI-15d to TOI-8d, and we fit the model to these data by setting the free parameters.  The model can then be run and the timing differences extrapolated from TOI-8d to TOI, with the calcuated timing difference at TOI as a broad target.  If we fit the Good data timing difference data and come within the error budget of the TOI timing difference datum, then we can have some confidence that the model represents reality and we may be able to justify using the model to create new SCLK correlations.
+Ground truth is the Good [DII - DIFF] timing differences from TOI-15d to TOI-8d, and we fit the model to these data by setting the free parameters.  The model can then be run and the timing differences extrapolated from TOI-8d to TOI, with the calculated timing difference at TOI as a broad target.  If we fit the Good data timing difference data and come within the error budget of the TOI timing difference datum, then we can have some confidence that the model represents reality and we may be able to justify using the model to create new SCLK correlations.
 
 The Python scripts (filenames ending in .py) and data files in the [top-level directory](../) of this project implement this model:
 
