@@ -169,8 +169,8 @@ Refer to the comments in those scripts for their use, and to the Readme.md file 
 
 ##### Full plot
 
-![](../flash.png)
+![](../doc/flash.png)
 
 ##### Enlarged inset
 
-![](../flash_inset.png)
+![](../doc/flash_inset.png)
