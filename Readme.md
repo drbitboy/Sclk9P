@@ -91,6 +91,8 @@ check_01.py -  "
 
 check_02.py -  "; also plots data
 
+doc/fit2png.py - Script to locate MRIVIS flash; uses doc/mrivis/*.fit
+
 
 =============
 Abbreviations

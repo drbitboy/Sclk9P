@@ -84,6 +84,28 @@ http://pdssbn.astro.umd.edu/holdings/di-c-hrii_hriv_mri_its-6-doc-set-v4.0/docum
 
 
 
+Locating the impact flash in the DIF MRIVIS imaging
+---------------------------------------------------
+
+fit2png.py - script to make the plot
+
+flash.xcf - plot of flash brightnesses
+
+flash.pn - plot of flash brightnesses
+
+flash_inset.png - plot inset of flash brightnesses
+
+mrivis/ - subdirectory with DIF MRIVIS FITS images:
+
+- mrivis/mv0173727702_9000910_062_dn.fit
+- mrivis/mv0173727702_9000910_063_dn.fit
+- mrivis/mv0173727702_9000910_064_dn.fit
+- mrivis/mv0173727702_9000910_065_dn.fit
+- mrivis/mv0173727703_9000910_066_dn.fit
+- mrivis/mv0173727703_9000910_067_dn.fit
+
+
+
 Miscellaneous
 -------------
 

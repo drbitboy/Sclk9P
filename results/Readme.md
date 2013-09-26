@@ -165,7 +165,7 @@ Refer to the comments in those scripts for their use, and to the Readme.md file 
 - mv0173727703_9000910_066.fit  RECSCLK = '1/0173727703.004'
 - mv0173727703_9000910_067.fit  RECSCLK = '1/0173727703.019'
 
-#### Plot of calibrated brightness sums along columns in MRIVIS images:
+#### Plot of calibrated brightness maxima along columns in MRIVIS images:
 
 ##### Full plot
 
