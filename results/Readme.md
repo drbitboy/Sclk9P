@@ -70,25 +70,70 @@ We could impose a slope more in line with the good and TOI points than the curre
 
 - that would only show up in images far away from the TOI where timing errors are already in the noise, and
 
-- near TOI the current model is already well within the error budget.
+- near TOI the current model is already within the error budget.
 
 
 Discussion
 ==========
 
+### Two-parameter modeling of thermal effects on oscillators
 
-### Error budget, errors and other subtleties
+The most reliable data available to build the mode are
+
+- the temperature data from telemetry for temperature sensors located near the oscillators from TOI-15d (DOY 170) to TOI.
+
+  - the temperature data are discrete and noisy, but interpolation by smoothing the data can provide an essentially continuous function of time vs. temperature.
+
+- the "Good" [DII - DIF] timing differences from TOI-15d to TOI-8d
+
+- the [DII - DIF] timing difference at TOI
+
+- an average thermal frequency coefficient is -0.65 PPM/degC for the batch of oscillators supplied to the project, as stated in the [vendor-supplied documentation](../doc/SER_DI-SC-CDH-053_Oscillator_-_Vendor_Data_and_Analysis.doc).
+
+  - although that document supplies coefficients for each oscillator, we assume that, to first order, the DII and DIF oscillators have about the same thermal response, leaving the actual value as a free parameter.
+ 
+- See the Error budget and Caveats section below for a discussion of the quality of some of these values.
+
+From that information, if we consider as another free parameter the initial drift rate between the DII and DIF SCLKs at TOI-15d, then that plus 
+
+- the temperature difference at TOI-15d
+
+- and [DII - DIF] timing difference at TOI-15d
+
+define the initial conditions of the two clocks.  From there, with the thermal coefficient as the second free parameter, we can use the temperature data over time to to integrate the state of the two SCLKs from there to TOI.  This then is the essence of the two-parameter model:
+
+- The first free parameter is an estimate of the drift rate between the DII and DIF SCLKs at TOI-15d
+
+- The second free parameter is an estimate of the temperature coefficient, PPM/degC
+
+Ground truth is the Good [DII - DIFF] timing differences from TOI-15d to TOI-8d, and we fit the model to these data by setting the free parameters.  The model can then be run and the timing differences extrapolated from TOI-8d to TOI, with the calcuated timing difference at TOI as a broad target.  If we fit the Good data timing difference data and come within the error budget of the TOI timing difference datum, then we can have some confidence that the model represents reality and we may be able to justify using the model to create new SCLK correlations.
+
+The Python scripts (filenames ending in .py) and data files in the [top-level directory](../) of this project implement this model:
+
+- readtemps.py:  reads DIF and DII temperatures
+
+- smoothtemps.py:  smooths and interpolates DI temperatures over time
+
+- timediffs.py:  contains, reads, parses and differences DII and DIF times (the Good, Suspect and TOI times)
+
+- ttmodel.py:  Implements the two-parameter time model for DI SCLKs, fits it to the Ground truth data, extrapolates the [DII - DIF] timing difference to TOI, and optionally plots the result.
+
+Refer to the comments in those scripts for their use.
+
+
+### Error budget, errors, other subtleties and caveats
 
 - The uncertainty in the DIF image-derived TOI is about 30ms, half the image cadence of the MRIVIS images.  That TOI is based on the appearance of the flash in the DIF images.  Those images had an integration time of 51ms and were initiated every 60ms.  The appearance of the flash in the first "flash image" image is unambiguous.  However the flash could have begun anywhere during that image or even at or near the end of the previous image, giving an uncertainty of about 30ms from the mid-exposure time of the flash image.  Furthermore:
 
-  - The delay between TOI and the flash has been estimated by the project co-investigators to be as much as 200ms.  That delay is asymmetric i.e. the TOI can only occur before (i.e. be _less than_), and _not_ after (i.e be greater than), the time of the flash.  So the delay does not figure into any formal uncertainty calculation, but it should be noted that its presence is a bias and it can only increase the [DII - DIF] SCLK difference i.e. move the TOI point _up_ in the plot above.
+  - The delay between TOI and the flash has been estimated by the project co-investigators to be as much as 200ms.  That delay is asymmetric i.e. the TOI can only occur before (i.e. be _less than_), and _not_ after (i.e not be greater than), the time of the flash.  So the delay does not figure into any formal uncertainty calculation, but it should be noted that its presence is a bias and it can only increase the [DII - DIF] SCLK difference i.e. move the TOI point _up_ in the plot above.
 
-
-- The uncertainty in the DII image-derived TOI is about 50ms, dominated by the integration time of the final ITSVIS images (100ms).
+- The uncertainty in the DII image-derived TOI is about 50ms, dominated by the integration times of the final ITSVIS images (100ms).
 
 - Some effects have been ignored as insignificant in this analysis, but are mentioned here for completeness:
 
   - The light-time transmission from the comet to the DIF means the actual DIF TOI is about 30ms earlier than using the DIF image timestamps directly; again, this increases the [DII - DIF] difference.
 
   - A anomaly was discovered during the EPOXI extended mission in the way image timestamps were processed, as described [here](../doc/sclk_fix.asc).  The net effect would be to reduce the [DII - DIF] difference by at most 20ms, essentially negating the light-time effect above.
+
+  - The temperature telemetry points chosen, FM001 and FM003 for DIF and DII, respectively, are not on the oscillators themselves, so the temperature readings are for a point near the oscillators.  However, they are the closest temperature points to the oscillators and are the best available.  For the purposes of this project, we assume the readings represent a constant offset from the actual oscillator temperatures.
 
