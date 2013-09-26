@@ -121,7 +121,9 @@ The Python scripts (filenames ending in .py) and data files in the [top-level di
 
 - ttmodel.py:  Implements the two-parameter time model for DI SCLKs, fits it to the Ground truth data, extrapolates the [DII - DIF] timing difference to TOI, and optionally plots the result.
 
-Refer to the comments in those scripts for their use.
+- all_scutemp.txt:  Temperature data for DII and DIF
+
+Refer to the comments in those scripts for their use, and to the Readme.md file in that directory for further information.
 
 
 ### Error budget, errors, other subtleties and caveats
