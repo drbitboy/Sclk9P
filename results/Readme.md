@@ -14,16 +14,16 @@ The two Deep Impact (DI) spacecraft, the DI Flyby (DIF) and DI Impactor (DII), h
 
 Further background on this issue is available in the [accompanying documentation](../doc/spacecraft_clock_correlation/) [[PDF]](https://github.com/drbitboy/Sclk9P/blob/master/doc/spacecraft_clock_correlation/sclk_correlation.pdf?raw=true), extracted from the [DI mission documentation data set](http://pdssbn.astro.umd.edu/holdings/di-c-hrii_hriv_mri_its-6-doc-set-v4.0/document/flight_data/di/spacecraft_clock_correlation/) archived with the Planetary Data System (PDS).  There are also some subtleties in the interpretation of the DI SCLK counters; those subleties, as well as details of the DI SCLK internals and digital representation, will not be described here and the reader is encouraged to browse the [document directory](../doc/) that is distributed on Github as part of this report as well as the [JPL/NAIF/SPICE SCLK required reading](http://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/sclk.html) and associated documents.
 
-After the end of the prime mission, limited efforts were made to improve the SCLK correlation.  Unresolved ambiguities in flight software and telemetry had limited the accuracy of the correlation to +/-1s; during the extended EPOXI mission, and an error was discovered in the way image timestamps were set.  During these efforts, Amy Walsh (Ball Aerospace) resolved many of these issues, fully characterized the DI SCLKs, and developed a method to improve the correlation accuracy by two orders of magnitude.  
+After the end of the prime mission, some efforts were made to improve the SCLK correlation, as unresolved ambiguities in flight software and telemetry had limited the accuracy of the correlation to +/-1s.  Eventually, Amy Walsh (Ball Aerospace) fully characterized the DI SCLKs, and developed a method to improve the correlation accuracy by two orders of magnitude.  
 
 Amy also provided flight thermal data for the DI SCUs (Spacecraft CPUs), vendor data describing the thermal performance of the SCLK oscillators, five other reliable time correlations within a fortnight of TOI, and one other suspect correlation a few days before TOI.  The available data are summarized in following figures (if this Readme file is being viewed on the Github website, larger versions of the images may be viewed by clicking on the images here):
 
-![Timing data](https://github.com/drbitboy/Sclk9P/raw/master/results/ExistingKernelCorrelationWithExtension.png)
+![Timing data](ExistingKernelCorrelationWithExtension.png)
 
-__Timing data; the red and green points, and the blue line, are based on SPICE SCLK kernels (models); note that the Good, Suspect and TOI points in the inset are offset from the SCLK model and suggest a different slope__
+__Timing data; the red and green points, and the blue line, are based on SPICE SCLK kernels (models); note that the Good, Suspect and TOI points in the inset are offset from the SCLK model and suggest a different slope, or even a non-linear relationship__
 
 
-![Thermal data](https://github.com/drbitboy/Sclk9P/raw/master/doc/spacecraft_clock_correlation/fig2_sclk_temp_history.jpg)
+![Thermal data](../doc/spacecraft_clock_correlation/fig2_sclk_temp_history.jpg)
 
 __Thermal data; note that these temperature sensors are near, but not on, the oscillators__
 
@@ -39,7 +39,7 @@ The goals of this project were
 
 - to provide an updated timing model, as well as updated trajectories, in the form of SPICE SCLK- and SP-Kernels
 
-To cut to the chase, the answer is no, the additional data do not suggest a physically plausible model consistent with the available data that will improve the timing model in such a way as to significantly improve the science obtained from the mission.
+To cut to the chase, the answer is no, the additional data are not adequate to build a physically plausible model consistent with the available data that will improve the timing model and significantly improve the science obtained from the mission.
 
 Summary
 =======
